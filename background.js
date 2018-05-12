@@ -5,6 +5,11 @@
 
 console.log('background running!!!');
 
+chrome.runtime.onMessage.addListener(receiver)
+
+function receiver(message, sender, sendResponse) {
+	console.log(message);
+}
 chrome.browserAction.onClicked.addListener(buttonClicked);
 
 function buttonClicked(tab) {
