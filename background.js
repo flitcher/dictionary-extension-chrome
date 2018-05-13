@@ -7,8 +7,11 @@ console.log('background running!!!');
 
 chrome.runtime.onMessage.addListener(receiver)
 
+window.word = "";
+
 function receiver(message, sender, sendResponse) {
 	console.log(message);
+	window.word = message.text;
 }
 chrome.browserAction.onClicked.addListener(buttonClicked);
 
