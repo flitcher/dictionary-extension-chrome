@@ -7,11 +7,15 @@ console.log('background running!!!');
 
 chrome.runtime.onMessage.addListener(receiver)
 
-window.word = "";
+window.word = "empty";
 
 function receiver(message, sender, sendResponse) {
 	console.log(message);
-	window.word = message.text;
+	if(message.text != "") {
+		window.word = message.text;
+		console.log('the selected word is = ' + message.text);
+	}
+	
 }
 chrome.browserAction.onClicked.addListener(buttonClicked);
 
