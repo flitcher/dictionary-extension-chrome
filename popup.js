@@ -1,5 +1,6 @@
 let bgpage = chrome.extension.getBackgroundPage();
 let word = bgpage.word;
+let def = "";
 
 let url = `https://api.wordnik.com/v4/word.json/
 ${word}
@@ -13,12 +14,16 @@ ${word}
 url = url.replace(/\s+/g, '');
 
 $(function () {
-
 	$.ajax({
 		type: 'GET',
 		url: url,
 		success: function(data) {
+			document.getElementById("word").innerHTML = "Word: " + "<b>" + word + "</b>";
 			document.getElementById("userselect").innerHTML = data[0].text;
+			def = data[0].text;
+		},
+		error: function() {
+			document.getElementById("userselect").innerHTML = '';
 		}
 	})
 })
